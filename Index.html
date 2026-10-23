@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f3e9">
+  <meta name="description" content="Pizzería Morel: la pizza que abraza el alma. Hecha con cariño, como en casa de la nonna.">
+  <title>Pizzería Morel | La pizza que abraza el alma</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* Mantener la pizza como cursor en toda la página, incluso al pasar/clicar logos, enlaces y botones */
+    html, body, body *, body *:hover, body *:active, body *:focus, body *:focus-visible {
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='36' viewBox='0 0 36 36'%3E%3Cpath d='M4 5 Q20 0 32 7 L18 32 Q14 34 12 29 Z' fill='%23f4c542' stroke='%23a94b20' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M4 5 Q18 0 32 7' fill='none' stroke='%23b91f35' stroke-width='4' stroke-linecap='round'/%3E%3Ccircle cx='14' cy='12' r='2.5' fill='%23c62828'/%3E%3Ccircle cx='23' cy='10' r='2.5' fill='%23c62828'/%3E%3Ccircle cx='18' cy='21' r='2.5' fill='%23c62828'/%3E%3C/svg%3E") 5 5, auto !important;
+    }
+
+    :root {
+      --red: #b91f35;
+      --red-dark: #891729;
+      --cream: #f8f3e9;
+      --paper: #fffdf8;
+      --ink: #2c211b;
+      --muted: #74675d;
+      --olive: #596447;
+      --line: rgba(44,33,27,.12);
+      --shadow: 0 24px 70px rgba(62,37,23,.12);
+      --nav-height: 78px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-height) + 20px); }
+    body {
+      min-height: 100vh; overflow-x: hidden; color: var(--ink);
+      background: var(--cream); font-family: "DM Sans", sans-serif; line-height: 1.6;
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='36' viewBox='0 0 36 36'%3E%3Cpath d='M4 5 Q20 0 32 7 L18 32 Q14 34 12 29 Z' fill='%23f4c542' stroke='%23a94b20' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M4 5 Q18 0 32 7' fill='none' stroke='%23b91f35' stroke-width='4' stroke-linecap='round'/%3E%3Ccircle cx='14' cy='12' r='2.5' fill='%23c62828'/%3E%3Ccircle cx='23' cy='10' r='2.5' fill='%23c62828'/%3E%3Ccircle cx='18' cy='21' r='2.5' fill='%23c62828'/%3E%3C/svg%3E") 5 5, auto;
+    }
+    a, button, [role="button"] {
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='36' viewBox='0 0 36 36'%3E%3Cpath d='M4 5 Q20 0 32 7 L18 32 Q14 34 12 29 Z' fill='%23f4c542' stroke='%23a94b20' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M4 5 Q18 0 32 7' fill='none' stroke='%23b91f35' stroke-width='4' stroke-linecap='round'/%3E%3Ccircle cx='14' cy='12' r='2.5' fill='%23c62828'/%3E%3Ccircle cx='23' cy='10' r='2.5' fill='%23c62828'/%3E%3Ccircle cx='18' cy='21' r='2.5' fill='%23c62828'/%3E%3C/svg%3E") 5 5, pointer;
+    }
+    body.menu-open { overflow: hidden; }
+    a, button { -webkit-tap-highlight-color: transparent; }
+    button, a { touch-action: manipulation; }
+    a { color: inherit; }
+    button { font: inherit; }
+    /* Tema oscuro con acentos neón */
+    body.dark-mode {
+      --cream: #0b0d13; --paper: #121722; --ink: #f7f0e8; --muted: #c1b8c4;
+      --olive: #b8f7d4; --line: rgba(255,255,255,.14);
+      background: #0b0d13; color: var(--ink);
+    }
+    body.dark-mode .navbar {
+      background: rgba(10,13,22,.82); border-bottom-color: rgba(70,245,190,.18);
+      box-shadow: 0 8px 35px rgba(0,0,0,.28), 0 1px 0 rgba(77,245,197,.12);
+    }
+    body.dark-mode .hero {
+      background: radial-gradient(ellipse at 12% 20%, rgba(185,31,53,.18), transparent 34%),
+                  radial-gradient(ellipse at 85% 72%, rgba(0,255,200,.10), transparent 30%),
+                  linear-gradient(135deg,#0b0d13 0%,#151321 55%,#0d1820 100%);
+    }
+    body.dark-mode .hero::before, body.dark-mode .hero::after {
+      border-color: rgba(0,255,200,.18); box-shadow: 0 0 30px rgba(0,255,200,.035), 0 0 0 34px rgba(0,255,200,.025);
+    }
+    body.dark-mode .nav-logo { color: #ff4968; text-shadow: 0 0 12px rgba(255,50,100,.48); }
+    body.dark-mode .nav-logo span:last-child { color: #f8f2ff; text-shadow: 0 0 12px rgba(0,255,207,.28); }
+    body.dark-mode .nav-links a { color: #e8e5f0; }
+    body.dark-mode .nav-links a:hover, body.dark-mode .nav-links a.active {
+      color: #66ffe0; background: rgba(0,255,207,.09); box-shadow: inset 0 0 0 1px rgba(0,255,207,.16), 0 0 18px rgba(0,255,207,.07);
+    }
+    body.dark-mode .nav-links .nav-order { color: #fff; background: linear-gradient(135deg,#ed3153,#a20d5b); box-shadow: 0 0 22px rgba(255,45,105,.32); }
+    body.dark-mode .hamburger { background: #151a27; color: #65ffe0; border-color: rgba(0,255,207,.32); box-shadow: 0 0 18px rgba(0,255,207,.09); }
+    body.dark-mode .hamburger span { background: currentColor; }
+    body.dark-mode .theme-toggle {
+      color: #8affea; background: rgba(0,255,207,.07); border-color: rgba(0,255,207,.35);
+      box-shadow: 0 0 16px rgba(0,255,207,.10), inset 0 0 14px rgba(0,255,207,.035);
+    }
+    body.dark-mode .theme-toggle:hover { box-shadow: 0 0 24px rgba(0,255,207,.24); }
+    body.dark-mode .slogan strong { color: #ff5473; text-shadow: 0 0 22px rgba(255,40,95,.18); }
+    body.dark-mode .hero-note { color: #b3a8bd; }
+    body.dark-mode .btn-primary { background: linear-gradient(135deg,#ff3159,#b90e54); box-shadow: 0 0 24px rgba(255,49,89,.3); }
+    body.dark-mode .btn-secondary { color: #8affea; background: rgba(0,255,207,.05); border-color: rgba(0,255,207,.42); }
+    body.dark-mode .btn-secondary:hover { background: rgba(0,255,207,.13); box-shadow: 0 0 22px rgba(0,255,207,.12); }
+    body.dark-mode .nav-links { background: #101521; }
+    .nav-actions { display: flex; align-items: center; gap: 10px; }
+    .theme-toggle {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 42px; padding: 9px 13px; border: 1px solid rgba(44,33,27,.15);
+      border-radius: 999px; color: var(--ink); background: rgba(255,253,248,.72);
+      font-size: .8rem; font-weight: 800; cursor: pointer; transition: .25s ease;
+    }
+    .theme-toggle:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(44,33,27,.10); }
+    .theme-icon { font-size: 1.05rem; line-height: 1; }
+    .brand-rain-trigger { border: 0; background: transparent; cursor: pointer; }
+    .brand-rain-trigger:hover { filter: drop-shadow(0 0 12px rgba(185,31,53,.25)); transform: translateY(-1px); }
+    body.dark-mode .brand-rain-trigger { animation: neonBrand 2.8s ease-in-out infinite; }
+    @keyframes neonBrand {
+      0%,100% { filter: drop-shadow(0 0 4px rgba(255,55,105,.35)); }
+      50% { filter: drop-shadow(0 0 13px rgba(0,255,207,.58)); }
+    }
+    .navbar {
+      position: fixed; z-index: 1000; inset: 0 0 auto;
+      min-height: var(--nav-height); background: rgba(248,243,233,.88);
+      border-bottom: 1px solid rgba(44,33,27,.08);
+      backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+    }
+    .nav-container {
+      width: min(1200px, 100% - 48px); min-height: var(--nav-height);
+      margin: auto; display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    }
+    .nav-logo {
+      text-decoration: none; display: inline-flex; align-items: center; gap: 9px;
+      color: var(--red); font: 800 1.32rem/1 "Playfair Display", serif; letter-spacing: -.04em;
+      white-space: nowrap;
+    }
+    .nav-logo span { color: var(--ink); }
+    .brand-mark { font-size: 1.3rem; }
+    .nav-links { display: flex; align-items: center; gap: 6px; list-style: none; }
+    .nav-links a {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 10px 16px; border-radius: 999px; text-decoration: none;
+      font-size: .91rem; font-weight: 700; color: #4e4139; transition: .22s ease;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--red); background: rgba(185,31,53,.08); }
+    .nav-links .nav-order { color: white; background: var(--red); box-shadow: 0 7px 18px rgba(185,31,53,.18); }
+    .nav-links .nav-order:hover { background: var(--red-dark); color: white; transform: translateY(-1px); }
+    .hamburger {
+      display: none; width: 46px; height: 46px; border: 1px solid var(--line);
+      border-radius: 50%; background: var(--paper); color: var(--red);
+      align-items: center; justify-content: center; flex-direction: column; gap: 5px; cursor: pointer;
+    }
+    .hamburger span { display: block; width: 19px; height: 2px; background: currentColor; border-radius: 4px; transition: .2s; }
+    .hamburger[aria-expanded="true"] span:first-child { transform: translateY(3.5px) rotate(45deg); }
+    .hamburger[aria-expanded="true"] span:last-child { transform: translateY(-3.5px) rotate(-45deg); }
+
+    .hero {
+      position: relative; isolation: isolate; min-height: 100svh; padding: calc(var(--nav-height) + 58px) 24px 76px;
+      display: grid; place-items: center; text-align: center; overflow: hidden;
+      background:
+        radial-gradient(ellipse at 12% 18%, rgba(211,174,116,.18), transparent 32%),
+        radial-gradient(ellipse at 88% 75%, rgba(185,31,53,.08), transparent 28%),
+        linear-gradient(135deg, #fbf7ef 0%, #f3e7d6 100%);
+    }
+    .hero::before, .hero::after {
+      content: ""; position: absolute; z-index: -1; width: 360px; height: 360px; border: 1px solid rgba(137,23,41,.12);
+      border-radius: 50%; pointer-events: none;
+    }
+    .hero::before { top: 16%; left: -220px; box-shadow: 0 0 0 28px rgba(137,23,41,.025), 0 0 0 58px rgba(137,23,41,.02); }
+    .hero::after { right: -240px; bottom: -180px; width: 480px; height: 480px; box-shadow: 0 0 0 30px rgba(137,23,41,.025), 0 0 0 64px rgba(137,23,41,.02); }
+    .hero-inner { width: min(100%, 920px); margin: auto; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px; margin-bottom: 22px;
+      color: var(--olive); font-size: .76rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase;
+      animation: rise .7s .05s both;
+    }
+    .eyebrow::before, .eyebrow::after { content: ""; width: 25px; height: 1px; background: currentColor; opacity: .6; }
+    .logo-frame {
+      position: relative; width: min(100%, 790px); margin: 0 auto 24px;
+      border-radius: 22px; cursor: pointer; outline-offset: 8px;
+      animation: rise .8s .12s both;
+    }
+    .logo-frame::after {
+      content: "TOCÁ EL LOGO ✦"; position: absolute; right: 14px; bottom: 14px;
+      padding: 7px 12px; border: 1px solid rgba(255,255,255,.55); border-radius: 999px;
+      background: rgba(44,33,27,.65); color: white; font-size: .65rem; font-weight: 800; letter-spacing: .1em;
+      opacity: 0; transform: translateY(5px); transition: .25s ease; pointer-events: none;
+    }
+    .logo-frame:hover::after, .logo-frame:focus-visible::after { opacity: 1; transform: translateY(0); }
+    .logo-img {
+      display: block; width: 100%; height: auto; max-height: 54vh; object-fit: contain;
+      border-radius: 16px; filter: drop-shadow(0 18px 30px rgba(55,35,20,.14));
+      transition: transform .3s ease, filter .3s ease;
+    }
+    .logo-frame:hover .logo-img { transform: translateY(-3px) scale(1.008); filter: drop-shadow(0 22px 32px rgba(55,35,20,.19)); }
+    .logo-frame:active .logo-img { transform: scale(.985); }
+    .slogan { max-width: 650px; margin: 0 auto 28px; font-size: clamp(1.05rem, 2.4vw, 1.35rem); color: var(--muted); animation: rise .8s .22s both; }
+    .slogan strong { display: inline-block; margin-top: 3px; color: var(--ink); font-family: "Playfair Display", serif; font-size: clamp(1.25rem, 3vw, 1.8rem); font-weight: 700; line-height: 1.35; }
+    .cta-buttons { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 12px; animation: rise .8s .32s both; }
+    .btn {
+      min-height: 52px; display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+      padding: 13px 23px; border: 1px solid transparent; border-radius: 999px;
+      text-decoration: none; font-weight: 800; font-size: .93rem; transition: transform .22s, box-shadow .22s, background .22s;
+    }
+    .btn:hover { transform: translateY(-3px); }
+    .btn-primary { color: white; background: var(--red); box-shadow: 0 10px 24px rgba(185,31,53,.22); }
+    .btn-primary:hover { background: var(--red-dark); box-shadow: 0 14px 30px rgba(185,31,53,.28); }
+    .btn-secondary { color: var(--ink); background: rgba(255,253,248,.55); border-color: rgba(44,33,27,.18); }
+    .btn-secondary:hover { background: var(--paper); border-color: rgba(44,33,27,.32); }
+    .hero-note { margin-top: 24px; color: #8a7a6d; font-size: .78rem; letter-spacing: .04em; animation: rise .8s .4s both; }
+    .hero-note span { color: var(--red); margin: 0 6px; }
+
+    .wa-float {
+      position: fixed; z-index: 900; right: max(22px, env(safe-area-inset-right)); bottom: max(22px, env(safe-area-inset-bottom));
+      width: 60px; height: 60px; display: grid; place-items: center; border-radius: 50%;
+      background: #20c968; color: white; box-shadow: 0 10px 28px rgba(32,201,104,.34);
+      text-decoration: none; transition: transform .2s, box-shadow .2s;
+    }
+    .wa-float:hover { transform: translateY(-4px) scale(1.04); box-shadow: 0 14px 32px rgba(32,201,104,.42); }
+    .wa-float svg { width: 29px; height: 29px; fill: currentColor; }
+    .wa-tooltip {
+      position: absolute; right: 70px; padding: 7px 11px; border-radius: 8px; background: var(--ink); color: white;
+      font-size: .76rem; font-weight: 700; white-space: nowrap; opacity: 0; transform: translateX(5px); transition: .2s; pointer-events: none;
+    }
+    .wa-float:hover .wa-tooltip { opacity: 1; transform: translateX(0); }
+
+    /* Lluvia de pizzas activada al tocar el logo */
+    .pizza-rain-layer { position: fixed; inset: 0; z-index: 2000; overflow: hidden; pointer-events: none; }
+    .falling-pizza {
+      position: absolute; top: -90px; left: var(--x); font-size: var(--size); line-height: 1;
+      filter: drop-shadow(0 5px 5px rgba(48,28,14,.15)); animation: pizzaFall var(--duration) linear var(--delay) forwards;
+      will-change: transform, opacity;
+    }
+    @keyframes pizzaFall {
+      0% { transform: translate3d(0,-10vh,0) rotate(0deg); opacity: 0; }
+      8% { opacity: 1; }
+      88% { opacity: .95; }
+      100% { transform: translate3d(var(--drift),110vh,0) rotate(var(--spin)); opacity: 0; }
+    }
+    @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (min-width: 1400px) { .hero { padding-top: calc(var(--nav-height) + 70px); } }
+    @media (max-width: 768px) {
+      :root { --nav-height: 70px; }
+      .nav-container { width: min(100% - 32px, 1200px); }
+      .nav-actions { margin-left: auto; gap: 7px; }
+      .theme-toggle { width: 44px; min-width: 44px; padding: 0; border-radius: 50%; }
+      .theme-label { display: none; }
+      .hamburger { display: flex; position: relative; z-index: 1002; }
+      .nav-links {
+        position: fixed; z-index: 1001; inset: 0 0 0 auto; width: min(82vw, 340px); height: 100dvh;
+        display: flex; align-items: stretch; justify-content: flex-start; flex-direction: column; gap: 8px;
+        padding: calc(var(--nav-height) + 28px) 22px 30px; background: var(--paper);
+        box-shadow: -18px 0 50px rgba(44,33,27,.15); transform: translateX(110%); visibility: hidden;
+        transition: transform .28s ease, visibility .28s;
+      }
+      .nav-links.open { transform: translateX(0); visibility: visible; }
+      .nav-links a { width: 100%; justify-content: flex-start; padding: 14px 16px; font-size: 1rem; }
+      .nav-links .nav-order { justify-content: center; margin-top: 8px; }
+      .hero { min-height: 100svh; padding: calc(var(--nav-height) + 48px) 20px 85px; }
+      .logo-frame { width: 100%; margin-bottom: 22px; }
+      .logo-img { max-height: none; }
+      .logo-frame::after { opacity: 1; transform: none; font-size: .58rem; right: 9px; bottom: 9px; }
+      .slogan { margin-bottom: 24px; }
+      .btn { min-height: 50px; padding: 12px 19px; }
+      .wa-float { width: 56px; height: 56px; right: 16px; bottom: 16px; }
+    }
+    @media (max-width: 420px) {
+      .nav-logo { font-size: 1.17rem; }
+      .hero { padding-left: 16px; padding-right: 16px; }
+      .eyebrow { font-size: .65rem; letter-spacing: .13em; }
+      .cta-buttons { width: 100%; flex-direction: column; }
+      .cta-buttons .btn { width: min(100%, 320px); }
+      .hero-note { font-size: .7rem; }
+      .wa-tooltip { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar" aria-label="Navegación principal">
+    <div class="nav-container">
+      <button type="button" class="nav-logo brand-rain-trigger" id="brandRain" aria-label="Pizzería Morel: activar lluvia de pizzas y empanadas" title="¡Tocame para una lluvia deliciosa!"><span class="brand-mark" aria-hidden="true">✦</span> Pizzería <span>Morel</span></button>
+      <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Activar modo oscuro" title="Cambiar tema"><span class="theme-icon" aria-hidden="true">☾</span><span class="theme-label">Modo oscuro</span></button>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-controls="navLinks" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="active">Inicio</a></li>
+        <li><a href="productos.html">Productos</a></li>
+        <li><a href="ubicacion.html">Ubicación</a></li>
+        <li><a class="nav-order" href="https://wa.me/5492664657055?text=Hola%2C%20buenas%20tardes.%20%C2%BFMe%20podr%C3%ADan%20pasar%20la%20carta%3F%20Gracias." target="_blank" rel="noopener noreferrer">Pedí por WhatsApp ↗</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <header class="hero">
+      <div class="hero-inner">
+        <p class="eyebrow">Tradición · sabor · familia</p>
+        <button class="logo-frame" id="pizzaLogo" type="button" aria-label="Tocar para lanzar una lluvia de pizzas" title="¡Tocame para una lluvia de pizzas!">
+          <img src="logo-pizzeria-morel.jpg.jpg" alt="Logo de Pizzería Morel" class="logo-img" width="1100" height="618" fetchpriority="high">
+        </button>
+        <p class="slogan">La pizza que abraza el alma.<br><strong>Hecha con cariño, como en casa de la nonna.</strong></p>
+        <div class="cta-buttons">
+          <a href="productos.html" class="btn btn-primary">Ver nuestro menú <span aria-hidden="true">→</span></a>
+          <a href="https://wa.me/5492664657055?text=Hola%2C%20buenas%20tardes.%20%C2%BFMe%20podr%C3%ADan%20pasar%20la%20carta%3F%20Gracias." target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><span aria-hidden="true">◉</span> Pedí por WhatsApp</a>
+        </div>
+        <p class="hero-note">Hecho con amor en San Luis <span>✦</span> Compartido en familia</p>
+      </div>
+    </header>
+  </main>
+
+  <a href="https://wa.me/5492664657055?text=Hola%2C%20buenas%20tardes.%20%C2%BFMe%20podr%C3%ADan%20pasar%20la%20carta%3F%20Gracias." class="wa-float" target="_blank" rel="noopener noreferrer" aria-label="Contactar a Pizzería Morel por WhatsApp">
+    <span class="wa-tooltip">¡Hablemos por WhatsApp!</span>
+    <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.004 0C7.174 0 0 7.176 0 16.004c0 2.824.738 5.58 2.14 8.01L.07 31.25l7.43-1.95A15.94 15.94 0 0 0 16.004 32C24.83 32 32 24.824 32 15.996 32 7.176 24.83 0 16.004 0zm9.28 22.6c-.39.99-1.92 1.81-3.15 2.05-.84.16-1.93.29-5.62-1.21-4.72-1.91-7.78-6.6-8.02-6.91-.23-.3-1.92-2.55-1.92-4.87 0-2.31 1.21-3.45 1.64-3.92.36-.4.98-.59 1.56-.59.19 0 .36.01.51.02.47.02.7-.07 1.1.84.39.92 1.33 3.25 1.45 3.49.11.23.19.51.04.81-.14.3-.27.45-.5.71-.23.25-.49.52-.68.73-.24.26-.49.45-.21.99.28.45 1.24 2.04 2.66 3.3 1.83 1.63 3.37 2.14 3.85 2.38.36.18.73.15 1-.1.33-.3.72-.8 1.12-1.3.28-.36.63-.42.99-.27.37.15 2.34 1.1 2.74 1.3.4.21.67.31.77.48.1.18.05.97-.34 1.96z"/></svg>
+  </a>
+
+  <div class="pizza-rain-layer" id="pizzaRain" aria-hidden="true"></div>
+
+  <script>
+    (() => {
+      const hamburger = document.getElementById('hamburger');
+      const navLinks = document.getElementById('navLinks');
+      const pizzaLogo = document.getElementById('pizzaLogo');
+      const brandRain = document.getElementById('brandRain');
+      const pizzaRain = document.getElementById('pizzaRain');
+      const themeToggle = document.getElementById('themeToggle');
+      const themeIcon = themeToggle.querySelector('.theme-icon');
+      const themeLabel = themeToggle.querySelector('.theme-label');
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      let rainTimer;
+
+      function closeMenu() {
+        navLinks.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.setAttribute('aria-label', 'Abrir menú');
+        document.body.classList.remove('menu-open');
+      }
+
+      hamburger.addEventListener('click', () => {
+        const opening = !navLinks.classList.contains('open');
+        navLinks.classList.toggle('open', opening);
+        hamburger.setAttribute('aria-expanded', String(opening));
+        hamburger.setAttribute('aria-label', opening ? 'Cerrar menú' : 'Abrir menú');
+        document.body.classList.toggle('menu-open', opening);
+      });
+      navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+      document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(); });
+      document.addEventListener('click', event => {
+        if (navLinks.classList.contains('open') && !navLinks.contains(event.target) &&
+            !hamburger.contains(event.target) && !themeToggle.contains(event.target)) closeMenu();
+      });
+
+      function applyTheme(dark) {
+        document.body.classList.toggle('dark-mode', dark);
+        themeIcon.textContent = dark ? '☀' : '☾';
+        themeLabel.textContent = dark ? 'Modo claro' : 'Modo oscuro';
+        themeToggle.setAttribute('aria-label', dark ? 'Activar modo claro' : 'Activar modo oscuro');
+        themeToggle.title = dark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro';
+        try { localStorage.setItem('morel-theme', dark ? 'dark' : 'light'); } catch (_) {}
+      }
+      let savedTheme = null;
+      try { savedTheme = localStorage.getItem('morel-theme'); } catch (_) {}
+      applyTheme(savedTheme === 'dark');
+      themeToggle.addEventListener('click', () => applyTheme(!document.body.classList.contains('dark-mode')));
+
+      function launchFoodRain() {
+        if (reducedMotion.matches) {
+          [pizzaLogo, brandRain].filter(Boolean).forEach(el => el.animate(
+            [{ transform: 'scale(1)' }, { transform: 'scale(1.035)' }, { transform: 'scale(1)' }],
+            { duration: 240 }
+          ));
+          return;
+        }
+        clearTimeout(rainTimer);
+        pizzaRain.replaceChildren();
+        const count = window.innerWidth < 600 ? 30 : 54;
+        const foods = ['🍕', '🍕', '🥟', '🥟', '🍕', '🥟', '🧀', '🍅'];
+        const fragment = document.createDocumentFragment();
+
+        for (let i = 0; i < count; i++) {
+          const food = document.createElement('span');
+          food.className = 'falling-pizza';
+          food.textContent = foods[Math.floor(Math.random() * foods.length)];
+          food.style.setProperty('--x', `${Math.random() * 100}vw`);
+          food.style.setProperty('--size', `${1.5 + Math.random() * 2.1}rem`);
+          food.style.setProperty('--duration', `${2.5 + Math.random() * 2.6}s`);
+          food.style.setProperty('--delay', `${Math.random() * 1.1}s`);
+          food.style.setProperty('--drift', `${Math.random() * 220 - 110}px`);
+          food.style.setProperty('--spin', `${Math.random() * 1000 - 500}deg`);
+          fragment.appendChild(food);
+        }
+        pizzaRain.appendChild(fragment);
+        rainTimer = setTimeout(() => pizzaRain.replaceChildren(), 7000);
+      }
+      pizzaLogo.addEventListener('click', launchFoodRain);
+      brandRain.addEventListener('click', launchFoodRain);
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Productos | Pizzería Morel</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800;900&display=swap');
+:root{--red:#b91f35;--red-dark:#891729;--cream:#f8f3e9;--paper:#fffdf8;--ink:#2c211b;--muted:#74675d;--olive:#596447;--line:rgba(44,33,27,.12);--shadow:0 20px 55px rgba(62,37,23,.10);--nav-height:76px;--gold:#f4c542}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-height) + 20px)}
+body{min-height:100vh;overflow-x:hidden;background:var(--cream);color:var(--ink);font-family:"DM Sans",sans-serif;line-height:1.6;transition:background .3s ease,color .3s ease}
+html,body,body *,body *:hover,body *:active,body *:focus,body *:focus-visible{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='36' viewBox='0 0 36 36'%3E%3Cpath d='M4 5 Q20 0 32 7 L18 32 Q14 34 12 29 Z' fill='%23f4c542' stroke='%23a94b20' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M4 5 Q18 0 32 7' fill='none' stroke='%23b91f35' stroke-width='4' stroke-linecap='round'/%3E%3Ccircle cx='14' cy='12' r='2.5' fill='%23c62828'/%3E%3Ccircle cx='23' cy='10' r='2.5' fill='%23c62828'/%3E%3Ccircle cx='18' cy='21' r='2.5' fill='%23c62828'/%3E%3C/svg%3E") 5 5,auto!important}
+a,button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}a{color:inherit}button{font:inherit}
+body.dark-mode{--cream:#0b0d13;--paper:#121722;--ink:#f7f0e8;--muted:#b9b2c2;--olive:#8affea;--line:rgba(255,255,255,.13);--shadow:0 18px 55px rgba(0,0,0,.28);background:#0b0d13;color:var(--ink)}
+.navbar{position:fixed;z-index:1000;inset:0 0 auto;min-height:var(--nav-height);background:rgba(248,243,233,.9);border-bottom:1px solid rgba(44,33,27,.09);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 8px 28px rgba(44,33,27,.045);transition:background .3s,border-color .3s,box-shadow .3s}
+.nav-container{width:min(1200px,calc(100% - 48px));min-height:var(--nav-height);margin:auto;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.nav-logo{display:inline-flex;align-items:center;gap:5px;white-space:nowrap;text-decoration:none;color:var(--red);font:900 clamp(1.1rem,2vw,1.4rem)/1 "Playfair Display",serif;letter-spacing:-.04em;transition:transform .22s,text-shadow .22s}
+.nav-logo:before{content:"✦";font:700 1.05rem "DM Sans",sans-serif}.nav-logo span{color:var(--ink)}.nav-logo:hover{transform:translateY(-1px);text-shadow:0 0 18px rgba(185,31,53,.22)}
+.nav-actions{display:flex;align-items:center;gap:9px;margin-left:auto}
+.nav-links{display:flex;align-items:center;gap:5px;list-style:none}
+.nav-links a{display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;border-radius:999px;text-decoration:none;color:#4e4139;font-size:.9rem;font-weight:700;transition:background .2s,color .2s,transform .2s}
+.nav-links a:hover,.nav-links a.active{background:rgba(185,31,53,.09);color:var(--red)}.nav-links a:hover{transform:translateY(-1px)}
+.theme-toggle{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:42px;padding:9px 13px;border:1px solid rgba(185,31,53,.2);border-radius:999px;background:rgba(255,253,248,.72);color:var(--red);font-size:.82rem;font-weight:800;white-space:nowrap;transition:.25s}
+.theme-toggle:hover{background:var(--red);color:#fff;transform:translateY(-2px);box-shadow:0 8px 20px rgba(185,31,53,.18)}.theme-icon{font-size:1.05rem;line-height:1}
+.hamburger{display:none;width:44px;height:44px;flex:0 0 44px;border:1px solid var(--line);border-radius:50%;background:var(--paper);color:var(--red);align-items:center;justify-content:center;flex-direction:column;gap:5px}
+.hamburger span{display:block;width:18px;height:2px;border-radius:4px;background:currentColor;transition:.2s}
+.hamburger[aria-expanded="true"] span:first-child{transform:translateY(3.5px) rotate(45deg)}.hamburger[aria-expanded="true"] span:last-child{transform:translateY(-3.5px) rotate(-45deg)}
+.page-header{position:relative;isolation:isolate;overflow:hidden;text-align:center;padding:calc(var(--nav-height) + 58px) 24px 48px;background:radial-gradient(ellipse at 12% 20%,rgba(211,174,116,.18),transparent 32%),radial-gradient(ellipse at 88% 75%,rgba(185,31,53,.08),transparent 28%),linear-gradient(135deg,#fbf7ef 0%,#f3e7d6 100%)}
+.page-header:before,.page-header:after{content:"";position:absolute;z-index:-1;width:290px;height:290px;border:1px solid rgba(137,23,41,.12);border-radius:50%;pointer-events:none;animation:orbitGlow 8s ease-in-out infinite alternate}
+.page-header:before{left:-150px;top:12px;box-shadow:0 0 0 28px rgba(137,23,41,.025),0 0 0 58px rgba(137,23,41,.02)}.page-header:after{right:-170px;bottom:-210px;width:410px;height:410px;animation-delay:-3s}
+.page-header h1{color:var(--red);font:900 clamp(2.35rem,6vw,4rem)/1.12 "Playfair Display",serif;letter-spacing:-.04em;animation:rise .7s .05s both}
+.page-header p{max-width:650px;margin:14px auto 0;color:var(--muted);font-size:clamp(.96rem,2vw,1.12rem);animation:rise .7s .15s both}
+.menu-section{width:min(1020px,calc(100% - 48px));margin:0 auto;padding:34px 0 76px}
+.categoria{margin:0 0 28px;padding:clamp(18px,3vw,28px);border:1px solid var(--line);border-radius:24px;background:rgba(255,253,248,.72);box-shadow:var(--shadow);opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s cubic-bezier(.22,1,.36,1),background .3s,border-color .3s}
+.categoria.visible{opacity:1;transform:translateY(0)}
+.categoria h2{display:flex;align-items:center;gap:10px;margin-bottom:18px;padding-bottom:13px;border-bottom:1px solid var(--line);color:var(--red);font:800 clamp(1.35rem,3vw,1.75rem)/1.25 "Playfair Display",serif}
+.menu-item{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:12px 8px;border-bottom:1px dashed var(--line);border-radius:9px;transition:background .2s,padding .2s}
+.menu-item:last-of-type{border-bottom-color:transparent}.menu-item:hover{background:rgba(185,31,53,.045);padding-left:13px;padding-right:13px}
+.menu-item-name{font-weight:600;font-size:.98rem;overflow-wrap:anywhere}.menu-item-precio{flex:0 0 auto;color:var(--red);font-weight:800;font-size:1rem;white-space:nowrap}
+.promos-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;margin-top:4px}
+.promo-card{position:relative;min-width:0;padding:22px 20px;border:1px solid rgba(244,197,66,.5);border-radius:19px;background:linear-gradient(145deg,#25212a,#151720);color:#fff;overflow:visible;box-shadow:0 12px 28px rgba(26,22,28,.11);transition:transform .25s,box-shadow .25s,border-color .25s}
+.promo-card:hover{transform:translateY(-5px);box-shadow:0 18px 34px rgba(185,31,53,.14);border-color:var(--gold)}
+.promo-card .promo-label{display:inline-flex;align-items:center;padding:5px 10px;margin-bottom:13px;border-radius:999px;background:var(--gold);color:#282017;font-size:.68rem;font-weight:900;letter-spacing:.07em;text-transform:uppercase}
+.promo-card h3{font-size:1rem;line-height:1.45;font-weight:700;margin-bottom:13px;overflow-wrap:anywhere}.promo-card .precio{font-size:clamp(1.35rem,2.2vw,1.7rem);font-weight:900;color:#ffdf76;letter-spacing:-.025em}
+.promo-card.destacada{background:linear-gradient(145deg,#501222,#20151f);border-color:#ffdc67}
+.promo-card.destacada:after{content:"★ LA MEGA";position:absolute;top:-10px;right:12px;padding:4px 9px;border-radius:999px;background:var(--red);color:white;font-size:.62rem;font-weight:900;letter-spacing:.04em}
+.gustos{margin-top:16px;color:var(--muted);font-size:.92rem;line-height:1.8}.gustos strong{color:var(--ink)}
+.cta-box{max-width:700px;margin:36px auto 0;padding:clamp(26px,5vw,44px) 22px;border:1px solid rgba(255,255,255,.16);border-radius:26px;text-align:center;color:#fff;background:radial-gradient(ellipse at top right,rgba(255,255,255,.13),transparent 45%),linear-gradient(135deg,var(--red),var(--red-dark));box-shadow:0 18px 42px rgba(137,23,41,.2)}
+.cta-box h3{font:800 clamp(1.55rem,3vw,2rem)/1.25 "Playfair Display",serif;margin-bottom:10px}.cta-box p{max-width:510px;margin:0 auto 22px;opacity:.92;font-size:.98rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:50px;padding:13px 22px;border:1px solid transparent;border-radius:999px;background:#fff;color:var(--red);text-decoration:none;font-weight:800;transition:transform .22s,box-shadow .22s,background .22s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 12px 25px rgba(0,0,0,.18);background:#fff8eb}
+.wa-float{position:fixed;z-index:900;right:max(20px,env(safe-area-inset-right));bottom:max(20px,env(safe-area-inset-bottom));width:60px;height:60px;display:grid;place-items:center;border-radius:50%;background:#20c968;color:#fff;box-shadow:0 10px 28px rgba(32,201,104,.34);text-decoration:none;transition:transform .2s,box-shadow .2s}
+.wa-float:hover{transform:translateY(-4px) scale(1.04);box-shadow:0 14px 32px rgba(32,201,104,.42)}.wa-float svg{width:29px;height:29px;fill:currentColor}
+footer{padding:26px 22px 32px;text-align:center;color:var(--muted);font-size:.85rem}footer strong{color:var(--red)}
+body.dark-mode .navbar{background:rgba(10,13,22,.86);border-bottom-color:rgba(70,245,190,.18);box-shadow:0 8px 35px rgba(0,0,0,.28),0 1px 0 rgba(77,245,197,.12)}
+body.dark-mode .nav-logo{color:#ff4968;text-shadow:0 0 12px rgba(255,50,100,.35)}body.dark-mode .nav-logo span{color:#f8f2ff;text-shadow:0 0 12px rgba(0,255,207,.22)}
+body.dark-mode .nav-links a{color:#e8e5f0}body.dark-mode .nav-links a:hover,body.dark-mode .nav-links a.active{color:#66ffe0;background:rgba(0,255,207,.09);box-shadow:inset 0 0 0 1px rgba(0,255,207,.13)}
+body.dark-mode .theme-toggle{color:#8affea;background:rgba(0,255,207,.07);border-color:rgba(0,255,207,.35);box-shadow:0 0 16px rgba(0,255,207,.08)}body.dark-mode .theme-toggle:hover{background:rgba(0,255,207,.15);box-shadow:0 0 24px rgba(0,255,207,.22)}
+body.dark-mode .hamburger{background:#151a27;color:#65ffe0;border-color:rgba(0,255,207,.32)}
+body.dark-mode .page-header{background:radial-gradient(ellipse at 12% 20%,rgba(185,31,53,.18),transparent 34%),radial-gradient(ellipse at 85% 72%,rgba(0,255,200,.1),transparent 30%),linear-gradient(135deg,#0b0d13 0%,#151321 55%,#0d1820 100%)}
+body.dark-mode .page-header h1{color:#ff5473;text-shadow:0 0 22px rgba(255,40,95,.15)}body.dark-mode .page-header:before,body.dark-mode .page-header:after{border-color:rgba(0,255,200,.18);box-shadow:0 0 30px rgba(0,255,200,.035),0 0 0 34px rgba(0,255,200,.025)}
+body.dark-mode .categoria{background:linear-gradient(145deg,rgba(18,23,34,.96),rgba(15,19,29,.94));border-color:rgba(0,255,207,.12);box-shadow:0 18px 50px rgba(0,0,0,.24),0 0 25px rgba(0,255,207,.025)}
+body.dark-mode .categoria h2{color:#ff5473;border-bottom-color:rgba(0,255,207,.16)}body.dark-mode .menu-item{border-bottom-color:rgba(255,255,255,.12)}body.dark-mode .menu-item:hover{background:rgba(0,255,207,.055)}
+body.dark-mode .menu-item-precio{color:#ff6d89;text-shadow:0 0 12px rgba(255,50,100,.1)}body.dark-mode .gustos{color:#b9b2c2}body.dark-mode .gustos strong{color:#f7f0e8}
+body.dark-mode .cta-box{box-shadow:0 0 35px rgba(255,49,89,.12),0 18px 42px rgba(0,0,0,.3)}body.dark-mode .wa-float{box-shadow:0 0 24px rgba(32,201,104,.3)}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}@keyframes orbitGlow{from{transform:scale(.9);opacity:.6}to{transform:scale(1.08);opacity:1}}
+@media(min-width:1400px){.menu-section{padding-top:42px}}
+@media(max-width:900px){.nav-container{width:calc(100% - 32px);gap:12px}.nav-links a{padding:9px 10px;font-size:.84rem}.promos-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:768px){
+:root{--nav-height:70px}.nav-container{width:calc(100% - 28px)}.nav-actions{gap:7px}.theme-toggle{width:44px;min-width:44px;padding:0;border-radius:50%}.theme-label{display:none}
+.hamburger{display:flex;position:relative;z-index:1002}.nav-links{position:fixed;z-index:1001;inset:0 0 0 auto;width:min(82vw,340px);height:100dvh;display:flex;align-items:stretch;justify-content:flex-start;flex-direction:column;gap:8px;padding:calc(var(--nav-height) + 28px) 22px 30px;background:var(--paper);box-shadow:-18px 0 50px rgba(44,33,27,.15);transform:translateX(110%);visibility:hidden;transition:transform .28s ease,visibility .28s}
+.nav-links.open{transform:translateX(0);visibility:visible}.nav-links a{width:100%;justify-content:flex-start;padding:14px 16px;font-size:1rem}body.menu-open{overflow:hidden}
+.page-header{padding:calc(var(--nav-height) + 45px) 18px 38px}.menu-section{width:calc(100% - 32px);padding:24px 0 64px}.categoria{border-radius:20px;margin-bottom:20px}.wa-float{width:56px;height:56px;right:16px;bottom:16px}body.dark-mode .nav-links{background:#101521}
+}
+@media(max-width:520px){.nav-logo{font-size:1.1rem}.promos-grid{grid-template-columns:1fr;gap:13px}.promo-card{padding:20px}.menu-item{gap:10px;padding:11px 5px}.menu-item-name{font-size:.92rem}.menu-item-precio{font-size:.94rem}.gustos{font-size:.87rem}.cta-box{border-radius:21px}.btn{width:100%;max-width:330px}.page-header:before{left:-210px}.page-header:after{right:-250px}}
+@media(max-width:360px){.nav-container{width:calc(100% - 20px)}.nav-logo{font-size:1rem}.theme-toggle,.hamburger{width:40px;min-width:40px;height:40px;flex-basis:40px}.menu-section{width:calc(100% - 22px)}.categoria{padding:15px;border-radius:17px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="nav-container">
+
+            <a href="index.html" class="nav-logo">Pizzería <span>Morel</span></a>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" type="button" aria-label="Activar modo oscuro" title="Cambiar tema">
+                    <span class="theme-icon" aria-hidden="true">☾</span><span class="theme-label">Modo oscuro</span>
+                </button>
+                <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-controls="navLinks" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+
+            <ul class="nav-links" id="navLinks">
+
+                <li><a href="index.html">Inicio</a></li>
+
+                <li><a href="productos.html" class="active">Productos</a></li>
+
+                <li><a href="ubicacion.html">Ubicación</a></li>
+
+                <li><a href="index.html#contactanos">Contactanos</a></li>
+
+            </ul>
+
+        </div>
+
+    </nav>
+
+
+
+    <header class="page-header">
+
+        <h1>Nuestra Carta</h1>
+
+        <p>Horneamos calidad, servimos pasión · Masa casera</p>
+
+    </header>
+
+
+
+    <div class="menu-section">
+
+
+
+        <!-- PROMOCIONES -->
+
+        <div class="categoria">
+
+            <h2>🔥 Promociones</h2>
+
+            <div class="promos-grid">
+
+                <div class="promo-card">
+
+                    <span class="promo-label">Promo 1</span>
+
+                    <h3>1 Muzzarella + 6 Empanadas</h3>
+
+                    <div class="precio">$22.000</div>
+
+                </div>
+
+                <div class="promo-card">
+
+                    <span class="promo-label">Promo 2</span>
+
+                    <h3>1 Muzzarella + 1 Jamón y Morrón</h3>
+
+                    <div class="precio">$29.000</div>
+
+                </div>
+
+                <div class="promo-card">
+
+                    <span class="promo-label">Promo 3</span>
+
+                    <h3>2 Muzzarellas + 1 Jamón y Morrón</h3>
+
+                    <div class="precio">$42.000</div>
+
+                </div>
+
+                <div class="promo-card">
+
+                    <span class="promo-label">Promo 4</span>
+
+                    <h3>1 Jamón y Morrón + 12 Empanadas</h3>
+
+                    <div class="precio">$35.000</div>
+
+                </div>
+
+                <div class="promo-card">
+
+                    <span class="promo-label">Promo 5</span>
+
+                    <h3>3 Muzzarellas</h3>
+
+                    <div class="precio">$40.000</div>
+
+                </div>
+
+                <div class="promo-card destacada">
+
+                    <span class="promo-label">Promo 6</span>
+
+                    <h3>24 Empanadas Surtidas</h3>
+
+                    <div class="precio">$36.000</div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- PIZZAS -->
+
+        <div class="categoria">
+
+            <h2>🍕 Pizzas</h2>
+
+            <div class="menu-item">
+
+                <span class="menu-item-name">Muzzarella</span>
+
+                <span class="menu-item-precio">$14.000</span>
+
+            </div>
+
+            <div class="menu-item">
+
+                <span class="menu-item-name">Muzzarella Doble</span>
+
+                <span class="menu-item-precio">$16.000</span>
+
+            </div>
+
+            <div class="menu-item">
+
+                <span class="menu-item-name">Muzzarella con Tomate</span>
+
+                <span class="menu-item-precio">$16.000</span>
+
+            </div>
+
+            <div class="menu-item">
+
+                <span class="menu-item-name">Muzzarella con Jamón</span>
+
+                <span class="menu-item-precio">$16.000</span>
+
+            </div>
+
+            <div class="menu-item">
+
+                <span class="menu-item-name">Muzzarella con Morrón</span>
+
+                <span class="menu-item-precio">$16.000</span>
+
+            </div>
+
+            <div class="menu-item">
+
+                <span class="menu-item-name">Muzzarella, Jamón y Morrones</span>
+
+                <span class="menu-item-precio">$17.000</span>
+
+            </div>
+
+            <div class="menu-item">
+
+                <span class="menu-item-name">Muzzarella, Jamón y Huevo</span>
+
+                <span class="menu-item-precio">$17.000</span>
+
+            </div>
+
+            <div class="menu-item">
+
+                <span class="menu-item-name">Fugazeta</span>
+
+                <span class="menu-item-precio">$17.000</span>
+
+            </div>
+
+            <div class="menu-item">
+
+                <span class="menu-item-name">Provenzal</span>
+
+                <span class="menu-item-precio">$16.000</span>
+
+            </div>
+
+            <div class="menu-item">
+
+                <span class="menu-item-name">Napolitana</span>
+
+                <span class="menu-item-precio">$18.000</span>
+
+            </div>
+
+            <div class="menu-item">
+
+                <span class="menu-item-name">Roquefort</span>
+
+                <span class="menu-item-precio">$19.000</span>
+
+            </div>
+
+            <div class="menu-item">
+
+                <span class="menu-item-name">Roquefort con Nuez</span>
+
+                <span class="menu-item-precio">$20.000</span>
+
+            </div>
+
+            <div class="menu-item">
+
+                <span class="menu-item-name">Salsa y Anchoas</span>
+
+                <span class="menu-item-precio">$18.000</span>
+
+            </div>
+
+            <div class="menu-item">
+
+                <span class="menu-item-name">Anchoas</span>
+
+                <span class="menu-item-precio">$18.000</span>
+
+            </div>
+
+            <div class="menu-item">
+
+                <span class="menu-item-name">Primavera</span>
+
+                <span class="menu-item-precio">$18.000</span>
+
+            </div>
+
+            <div class="menu-item">
+
+                <span class="menu-item-name">Palmitos</span>
+
+                <span class="menu-item-precio">$24.000</span>
+
+            </div>
+
+            <div class="menu-item">
+
+                <span class="menu-item-name">Ananá</span>
+
+                <span class="menu-item-precio">$24.000</span>
+
+            </div>
+
+            <div class="menu-item">
+
+                <span class="menu-item-name">Calabresa</span>
+
+                <span class="menu-item-precio">$18.000</span>
+
+            </div>
+
+            <div class="menu-item">
+
+                <span class="menu-item-name">Huevo Frito</span>
+
+                <span class="menu-item-precio">$18.000</span>
+
+            </div>
+
+            <div class="menu-item">
+
+                <span class="menu-item-name">Faina</span>
+
+                <span class="menu-item-precio">$14.000</span>
+
+            </div>
+
+            <div class="menu-item">
+
+                <span class="menu-item-name">Faina a la Pizza</span>
+
+                <span class="menu-item-precio">$15.000</span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- EMPANADAS -->
+
+        <div class="categoria">
+
+            <h2>🥟 Empanadas</h2>
+
+            <div class="menu-item">
+
+                <span class="menu-item-name">Docena</span>
+
+                <span class="menu-item-precio">$19.000</span>
+
+            </div>
+
+            <div class="menu-item">
+
+                <span class="menu-item-name">Unidad</span>
+
+                <span class="menu-item-precio">$2.000</span>
+
+            </div>
+
+            <p class="gustos">
+
+                <strong>Gustos:</strong> Carne · Pollo · Verdura · Jamón y Queso · Roquefort · Árabe · Queso y Cebolla · Capresse
+
+            </p>
+
+        </div>
+
+
+
+        <!-- TARTAS -->
+
+        <div class="categoria">
+
+            <h2>🥧 Tartas</h2>
+
+            <div class="menu-item">
+
+                <span class="menu-item-name">Entera</span>
+
+                <span class="menu-item-precio">$25.000</span>
+
+            </div>
+
+            <div class="menu-item">
+
+                <span class="menu-item-name">Porción</span>
+
+                <span class="menu-item-precio">$3.500</span>
+
+            </div>
+
+            <p class="gustos">
+
+                <strong>Gustos:</strong> Verdura · Zapallito · Jamón, Queso y Tomate
+
+            </p>
+
+        </div>
+
+
+
+        <!-- CTA -->
+
+        <div class="cta-box">
+
+            <h3>¿Querés hacer un pedido?</h3>
+
+            <p>Escribinos por WhatsApp y te atendemos al toque. También hacemos envíos a domicilio.</p>
+
+            <a href="https://wa.me/5492664657055?text=Hola%20Buenas%20tardes%2C%20disculpen%20las%20molestias%20me%20podr%C3%ADan%20pasar%20la%20carta.%20Gracias" 
+
+               target="_blank" rel="noopener" class="btn">
+
+                📱 Pedir por WhatsApp
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+
+    <footer>
+
+        <p>© 2026 <strong>Pizzería Morel</strong> · Av. Pringles y Juan Gilberto Funes 120 · El Volcán, San Luis</p>
+
+    </footer>
+
+
+
+    <a href="https://wa.me/5492664657055?text=Hola%20Buenas%20tardes%2C%20disculpen%20las%20molestias%20me%20podr%C3%ADan%20pasar%20la%20carta.%20Gracias" 
+
+       class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+
+            <path d="M16.004 0C7.174 0 0 7.176 0 16.004c0 2.824.738 5.58 2.14 8.01L.07 31.25l7.43-1.95A15.94 15.94 0 0 0 16.004 32C24.83 32 32 24.824 32 15.996 32 7.176 24.83 0 16.004 0zm9.28 22.6c-.39.99-1.92 1.81-3.15 2.05-.84.16-1.93.29-5.62-1.21-4.72-1.91-7.78-6.6-8.02-6.91-.23-.3-1.92-2.55-1.92-4.87 0-2.31 1.21-3.45 1.64-3.92.36-.4.98-.59 1.56-.59.19 0 .36.01.51.02.47.02.7-.07 1.1.84.39.92 1.33 3.25 1.45 3.49.11.23.19.51.04.81-.14.3-.27.45-.5.71-.23.25-.45.48-.68.73-.24.26-.49.53-.21.99.28.45 1.24 2.04 2.66 3.3 1.83 1.63 3.37 2.14 3.85 2.38.36.18.73.15 1-.1.33-.3.72-.8 1.12-1.3.28-.36.63-.42.99-.27.37.15 2.34 1.1 2.74 1.3.4.21.67.31.77.48.1.18.05.97-.34 1.96z"/>
+
+        </svg>
+
+    </a>
+
+
+
+    <script>
+(() => {
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  const themeToggle = document.getElementById('themeToggle');
+  const themeIcon = themeToggle.querySelector('.theme-icon');
+  const themeLabel = themeToggle.querySelector('.theme-label');
+
+  function closeMenu() {
+    navLinks.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    hamburger.setAttribute('aria-label', 'Abrir menú');
+    document.body.classList.remove('menu-open');
+  }
+  hamburger.addEventListener('click', () => {
+    const opening = !navLinks.classList.contains('open');
+    navLinks.classList.toggle('open', opening);
+    hamburger.setAttribute('aria-expanded', String(opening));
+    hamburger.setAttribute('aria-label', opening ? 'Cerrar menú' : 'Abrir menú');
+    document.body.classList.toggle('menu-open', opening);
+  });
+  navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(); });
+  document.addEventListener('click', event => {
+    if (navLinks.classList.contains('open') && !navLinks.contains(event.target) &&
+        !hamburger.contains(event.target) && !themeToggle.contains(event.target)) closeMenu();
+  });
+
+  function applyTheme(dark) {
+    document.body.classList.toggle('dark-mode', dark);
+    themeIcon.textContent = dark ? '☀' : '☾';
+    themeLabel.textContent = dark ? 'Modo claro' : 'Modo oscuro';
+    themeToggle.setAttribute('aria-label', dark ? 'Activar modo claro' : 'Activar modo oscuro');
+    themeToggle.title = dark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro';
+    try { localStorage.setItem('morel-theme', dark ? 'dark' : 'light'); } catch (_) {}
+  }
+  let savedTheme = null;
+  try { savedTheme = localStorage.getItem('morel-theme'); } catch (_) {}
+  applyTheme(savedTheme === 'dark');
+  themeToggle.addEventListener('click', () => applyTheme(!document.body.classList.contains('dark-mode')));
+
+  const categories = document.querySelectorAll('.categoria');
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    categories.forEach(category => observer.observe(category));
+  } else {
+    categories.forEach(category => category.classList.add('visible'));
+  }
+})();
+</script>
+
+</body>
+
+</html>
